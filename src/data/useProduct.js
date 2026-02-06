@@ -34,7 +34,7 @@ export function useProducts() {
         // set own url endpoint 
         const response = await fetch('/api/products')
 
-        if (!response.ok) {
+        if (!response.ok) { 
           throw new Error('Failed to fetch products')
         }
 
