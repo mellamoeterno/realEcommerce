@@ -34,7 +34,7 @@ function ProductCard({ product }) {
     </article>
   )
 }
-
+ 
 /**
  * React.memo prevents re-rendering unless:
  * - the product reference changes
