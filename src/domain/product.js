@@ -6,7 +6,7 @@
  * @property {number} price     Price in smallest currency unit or decimal (decide once)
  * @property {string} imageUrl  Absolute or relative image URL
  */
-
+ 
 /**
  * @param {Object} params
  * @param {string} params.id
