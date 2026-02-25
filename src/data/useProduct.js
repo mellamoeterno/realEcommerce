@@ -38,8 +38,8 @@ export function useProducts() {
           throw new Error('Failed to fetch products')
         }
 
-        const data = await response.json()
-
+        const data = await response.json() 
+ 
         /**
          * Convert raw API data into immutable domain entities.
          * This ensures:
