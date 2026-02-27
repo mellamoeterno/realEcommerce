@@ -69,7 +69,7 @@ export function useProducts() {
         }
       }
     }
-
+ 
     loadProducts()
 
     return () => {
