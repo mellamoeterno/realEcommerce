@@ -24,6 +24,10 @@
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
 
+
+    //prisma 
+    "esModuleInterop": true,
+    "ignoreDeprecations": "6.0",
     // Style Options
     // "noImplicitReturns": true,
     // "noImplicitOverride": true,
