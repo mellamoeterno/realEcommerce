@@ -7,12 +7,13 @@
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "nodenext",
-    "target": "esnext",
-    "types": [],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "target": "ES2023",
+    //"types": [],
     // For nodejs:
     // "lib": ["esnext"],
-    // "types": ["node"],
+     "types": ["node"],
     // and npm install -D @types/node
 
     // Other Outputs
@@ -27,7 +28,9 @@
 
     //prisma 
     "esModuleInterop": true,
-    "ignoreDeprecations": "6.0",
+    
+    //figure out why deleting "ignoreDeprecations": "6.0", fixes and why prisma said to add it if it gives errors.
+
     // Style Options
     // "noImplicitReturns": true,
     // "noImplicitOverride": true,
