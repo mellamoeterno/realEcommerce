@@ -28,4 +28,4 @@ model Post {
   authorId  Int
 } 
 
-//figure why the colors are blank
+
