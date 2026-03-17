@@ -1,9 +1,13 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import { prisma } from "./src/lib/prisma";
 async function main() {
-  const user = await prisma.user.create({
-    data: {
-      name: "Alice",
-      email: "alice@prisma.io",
+  const user = await prisma.user.upsert({
+    where: { email: "richmyself8@gmail.com" },
+    create: {
+      name: "avnadmin",
+      email: "richmyself8@gmail.com",
       posts: {
         create: {
           title: "Hello World",
@@ -12,11 +16,14 @@ async function main() {
         },
       },
     },
+    update: {
+      name: "avnadmin",
+    },
     include: {
       posts: true,
     },
   });
-  console.log("Created user:", user);
+  console.log("Upserted user:", user);
   // Fetch all users with their posts
   const allUsers = await prisma.user.findMany({
     include: {
@@ -34,3 +41,8 @@ main()
     await prisma.$disconnect();
     process.exit(1);
   });
+
+console.log({
+  host: process.env.DATABASE_HOST,
+  port: process.env.DATABASE_PORT,
+});
