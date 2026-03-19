@@ -21,5 +21,7 @@ const adapter = new PrismaMariaDb({
   },
   connectionLimit: 5,
 });
-const prisma = new PrismaClient({ adapter });
+// The Prisma adapter option is runtime-valid but not part of the generated PrismaClient option typings.
+// Casting here keeps `prisma.*` model types intact for the rest of the app.
+const prisma = new PrismaClient({ adapter } as any);
 export { prisma };
