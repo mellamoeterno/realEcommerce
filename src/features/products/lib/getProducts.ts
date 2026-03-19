@@ -5,8 +5,7 @@ import type { ProductDTO } from "../dto/product.dto";
 import { toProductDTO } from "./transform";
 
 const getProductsFromDb = cache(async (): Promise<ProductDTO[]> => {
-  // Prisma adapter types can be out-of-sync; runtime still uses the generated schema.
-  const products = await (prisma as any).products.findMany({
+  const products = await prisma.products.findMany({
     select: {
       id: true,
       name: true,
