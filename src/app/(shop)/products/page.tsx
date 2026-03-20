@@ -1,4 +1,6 @@
 import { getProducts } from "../../../features/products/lib/getProducts";
+import { AddToCartButton } from "../../../features/cart/components/add-to-cart-button";
+import { CartLink } from "../../../features/cart/components/cart-link";
 
 export default async function ProductsPage() {
   const products = await getProducts();
@@ -8,9 +10,12 @@ export default async function ProductsPage() {
       <div className="mx-auto w-full max-w-6xl">
         <div className="mb-10 flex items-center justify-between">
           <h1 className="text-3xl font-semibold text-black">Products</h1>
-          <span className="text-sm text-zinc-500">
-            {products.length} {products.length === 1 ? "item" : "items"}
-          </span>
+          <div className="flex items-center gap-3">
+            <span className="text-sm text-zinc-500">
+              {products.length} {products.length === 1 ? "item" : "items"}
+            </span>
+            <CartLink />
+          </div>
         </div>
 
         {products.length === 0 ? (
@@ -38,13 +43,12 @@ export default async function ProductsPage() {
                     </div>
                   </div>
 
-                  {/* Placeholder for future actions */}
                   <div className="mt-auto">
-                    <button
-                      className="w-full rounded-lg border border-black px-4 py-2 text-sm font-medium text-black transition hover:bg-black hover:text-white"
-                    >
-                      View Product
-                    </button>
+                    <AddToCartButton
+                      productId={p.id}
+                      name={p.name}
+                      unitPrice={p.price}
+                    />
                   </div>
                 </div>
               </li>
