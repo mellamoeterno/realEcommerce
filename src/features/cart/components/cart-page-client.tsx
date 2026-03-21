@@ -99,7 +99,7 @@ export function CartPageClient() {
 
             <div className="rounded-xl border border-zinc-200 bg-white p-4">
               <p className="text-lg font-semibold text-black">
-                Subtotal: {toMoney(subtotal)}
+                Subtotal: {toMoney(subtotal)}{/* toMoney */}
               </p>
               <p className="mt-1 text-sm text-zinc-500">
                 Final total and validated prices are calculated on the server at
