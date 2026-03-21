@@ -27,5 +27,5 @@ function AddToCartButtonBase({ productId, name, unitPrice }: AddToCartButtonProp
   );
 }
 
-export const AddToCartButton = memo(AddToCartButtonBase);
+export const AddToCartButton = memo(AddToCartButtonBase); //it seems this always need zustand to work
 
