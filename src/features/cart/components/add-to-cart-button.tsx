@@ -6,7 +6,7 @@ import { useCartStore } from "../store/cart-store";
 type AddToCartButtonProps = {
   productId: string;
   name: string;
-  unitPrice: string;
+  unitPrice: number;
 };
 
 function AddToCartButtonBase({ productId, name, unitPrice }: AddToCartButtonProps) {
