@@ -10,6 +10,12 @@ const getProductsFromDb = cache(async (): Promise<ProductDTO[]> => {
       id: true,
       name: true,
       price: true,
+      product_images: {
+      select: {
+        image_url: true,
+        is_primary: true,
+      },
+      },
     },
   });
 

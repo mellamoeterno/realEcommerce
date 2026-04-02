@@ -1,6 +1,8 @@
 import { getProducts } from "../../../features/products/lib/getProducts";
 import { AddToCartButton } from "../../../features/cart/components/add-to-cart-button";
 import { CartLink } from "../../../features/cart/components/cart-link";
+import Link from "next/link";
+import Image from "next/image"
 
 export default async function ProductsPage() {
   const products = await getProducts();
@@ -17,7 +19,6 @@ export default async function ProductsPage() {
               {products.length} {products.length === 1 ? "item" : "items"}
             </span>
 
-            {/* Future cart button */}
             <button className="rounded-lg border border-black px-3 py-1.5 text-sm font-medium text-black transition hover:bg-black hover:text-white">
               Cart
             </button>
@@ -39,41 +40,55 @@ export default async function ProductsPage() {
           ) : (
             <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {products.map((p) => (
-                <li
-                  key={p.id}
-                  className="group rounded-xl border border-zinc-200 bg-white p-5 shadow-sm transition hover:shadow-md"
-                >
-                  <div className="flex h-full flex-col gap-4">
-                    {/* Product Name */}
-                    <div className="text-lg font-medium text-black line-clamp-2">
-                      {p.name}
-                    </div>
-
-                    {/* Price */}
-                    <div className="text-sm text-zinc-500">
-                      Price
-                      <div className="mt-1 text-lg font-semibold text-black">
-                        {p.price}
+                <li key={p.id}>
+                  <Link
+                    href={`/products/${p.id}`}
+                    className="group block h-full rounded-xl border border-zinc-200 bg-white p-5 shadow-sm transition hover:shadow-md"
+                  >
+                    <div className="flex h-full flex-col gap-4">
+                      
+                      {/* Image */}
+                      <div className="relative w-full aspect-square bg-zinc-100 rounded-lg overflow-hidden">
+                        <Image
+                          src={p.imageUrl}
+                          alt={p.name}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform"
+                        />
                       </div>
-                    </div>
 
-                    {/* Placeholder for future actions */}
-                    <div className="mt-auto">
-                      <button className="w-full rounded-lg border border-black px-4 py-2 text-sm font-medium text-black transition hover:bg-black hover:text-white">
-                        View Product
-                      </button>
+                      {/* Product Name */}
+                      <div className="text-lg font-medium text-black line-clamp-2">
+                        {p.name}
+                      </div>
+
+                      {/* Price */}
+                      <div className="text-sm text-zinc-500">
+                        Price
+                        <div className="mt-1 text-lg font-semibold text-black">
+                          ${p.price.toFixed(2)}
+                        </div>
+                      </div>
+
+                      {/* CTA */}
+                      <div className="mt-auto">
+                        <div className="w-full rounded-lg border border-black px-4 py-2 text-center text-sm font-medium text-black transition group-hover:bg-black group-hover:text-white">
+                          View Product
+                        </div>
+                      </div>
+
                     </div>
-                  </div>
+                  </Link>
                 </li>
               ))}
             </ul>
           )}
         </div>
       </div>
+
+      {/* Footer (unchanged) */}
       <footer className="mt-20 border-t border-zinc-200 bg-white">
         <div className="mx-auto grid w-full max-w-6xl gap-10 px-6 py-12 sm:grid-cols-2 lg:grid-cols-4">
-          
-          {/* Brand */}
           <div>
             <h3 className="text-lg font-semibold text-black">MyStore</h3>
             <p className="mt-3 text-sm text-zinc-600">
@@ -82,7 +97,6 @@ export default async function ProductsPage() {
             </p>
           </div>
 
-          {/* Shop */}
           <div>
             <h4 className="text-sm font-semibold text-black">Shop</h4>
             <ul className="mt-3 space-y-2 text-sm text-zinc-600">
@@ -92,7 +106,6 @@ export default async function ProductsPage() {
             </ul>
           </div>
 
-          {/* Company */}
           <div>
             <h4 className="text-sm font-semibold text-black">Company</h4>
             <ul className="mt-3 space-y-2 text-sm text-zinc-600">
@@ -102,7 +115,6 @@ export default async function ProductsPage() {
             </ul>
           </div>
 
-          {/* Legal */}
           <div>
             <h4 className="text-sm font-semibold text-black">Legal</h4>
             <ul className="mt-3 space-y-2 text-sm text-zinc-600">
@@ -113,7 +125,6 @@ export default async function ProductsPage() {
           </div>
         </div>
 
-        {/* Bottom bar */}
         <div className="border-t border-zinc-200">
           <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-3 px-6 py-6 text-sm text-zinc-500 sm:flex-row">
             <span>© {new Date().getFullYear()} MyStore. All rights reserved.</span>
