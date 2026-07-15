@@ -16,7 +16,7 @@ export default async function ProductPage({ params }: PageProps) {
     notFound();
   }
 
-  const product = await getProductById(id);
+  const product = await getProductById(id);           //last root of products data seems like
 
   // Handle missing product
   if (!product) {
