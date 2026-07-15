@@ -20,12 +20,20 @@ function AddToCartButtonBase({ productId, name, unitPrice }: AddToCartButtonProp
     <button
       type="button"
       onClick={onClick}
-      className="w-full rounded-lg border border-black px-4 py-2 text-sm font-medium text-black transition hover:bg-black hover:text-white"
+      className="w-full rounded-lg border border-black px-4 py-2 text-sm font-medium text-black transition duration-200 hover:scale-105
+      active:scale-95 hover:bg-black hover:text-white"
     >
       Add to Cart
     </button>
   );
 }
 
-export const AddToCartButton = memo(AddToCartButtonBase); //it seems this always need zustand to work
+export const AddToCartButton = memo(AddToCartButtonBase); 
 
+
+/*  
+    transition-all
+    duration-200
+    hover:scale-105
+    active:scale-95
+ */

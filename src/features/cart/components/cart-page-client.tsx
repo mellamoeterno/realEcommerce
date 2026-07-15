@@ -82,12 +82,13 @@ export function CartPageClient() {
                         onChange={(e) =>
                           setQuantity(item.productId, Number(e.target.value))
                         }
-                        className="w-20 rounded-md border border-zinc-300 px-2 py-1 text-sm"
+                        className="w-20 rounded-md border border-zinc-300 px-2 py-1 text-sm text-black [&::-webkit-inner-spin-button]:opacity-100 
+                        [&::-webkit-outer-spin-button]:opacity-100"
                       />
                       <button
                         type="button"
                         onClick={() => removeItem(item.productId)}
-                        className="rounded-md border border-zinc-300 px-3 py-1 text-sm"
+                        className="rounded-md border border-zinc-300 text-[#f00] px-3 py-1 text-sm"
                       >
                         Remove
                       </button>
