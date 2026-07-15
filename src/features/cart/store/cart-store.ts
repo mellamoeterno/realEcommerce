@@ -57,3 +57,4 @@ export const useCartStore = create<CartState>()(
   )
 );
 
+//this seems to be sort of the cart context

@@ -9,6 +9,11 @@ export async function getProductById(id: string): Promise<ProductDTO | null> {
       where: { id },
       include: {
         product_images: true,
+        product_types: {
+          select: {
+            type_name: true,
+          },
+        },
       },
     });
 
@@ -23,3 +28,4 @@ export async function getProductById(id: string): Promise<ProductDTO | null> {
   }
 }
 
+//it seems my database main "root" is from here

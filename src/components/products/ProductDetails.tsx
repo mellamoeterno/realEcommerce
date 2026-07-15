@@ -3,12 +3,19 @@
 import Image from "next/image";
 import type { ProductDTO } from "../../features/products/dto/product.dto";
 import { AddToCartButton } from "../../features/cart/components/add-to-cart-button";
+import { useState } from "react";
+
+
+
 
 type ProductDetailsProps = {
   product: ProductDTO;
 };
 
 export function ProductDetails({ product }: ProductDetailsProps) {
+
+  const [selectedImage, setSelectedImage ] = useState(0)
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -17,12 +24,41 @@ export function ProductDetails({ product }: ProductDetailsProps) {
         <div className="flex flex-col gap-4">
           <div className="relative w-full aspect-square bg-white border rounded-md overflow-hidden">
             <Image
-              src={product.imageUrl || "/placeholder.png"}
+              src={
+                product.imageUrls[selectedImage] ??
+                product.imageUrl ??
+                "/placeholder.png"
+              }
               alt={product.name}
               fill
               className="object-contain p-4"
-              priority
             />
+            <button
+            className="absolute left-2 top-1/2 -translate-y-1/2 bg-[#0000] text-black squared-full w-10 h-10"
+            onClick={() => 
+              setSelectedImage((prev) =>
+              prev === 0
+                  ? product.imageUrls.length - 1
+                  : prev - 1
+            )
+            }
+            >
+              ←
+            </button>
+            <button
+            className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#0000] text-black squared-full w-10 h-10"
+            onClick={() => 
+              setSelectedImage((prev) =>
+              prev === product.imageUrls.length - 1
+                  ? 0
+                  : prev + 1
+            )
+            }
+            >
+              →
+            </button>
+            
+
           </div>
 
           {/* Thumbnails (UI only for now) */}
@@ -91,9 +127,6 @@ export function ProductDetails({ product }: ProductDetailsProps) {
             unitPrice={product.price}
           />
 
-          <button className="w-full bg-orange-500 hover:bg-orange-600 transition text-white rounded-full py-2 text-sm font-medium">
-            Buy Now
-          </button>
 
           <div className="text-xs text-gray-500">
             <p>Secure transaction</p>
