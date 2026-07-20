@@ -1,10 +1,13 @@
 import "dotenv/config";
 import { PrismaMariaDb } from "@prisma/adapter-mariadb";
 import { PrismaClient } from "../../generated/prisma";
-import fs from "fs";
-import path from "path";
 
-const sslCa = fs.readFileSync(path.join(process.cwd(), "certs", "ca.pem"));
+const sslCa = process.env.DATABASE_CA_CERT;
+
+if (!sslCa) {
+  throw new Error("Missing DATABASE_CA_CERT enviroment variable.")
+}
+
 const dbUrl = process.env.DATABASE_URL ? new URL(process.env.DATABASE_URL) : null;
 
 const adapter = new PrismaMariaDb({
