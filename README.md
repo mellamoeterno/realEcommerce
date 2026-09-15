@@ -22,9 +22,6 @@ In this project i'm also implementing dynamic routing with nextjs app router usi
 - Server Side rendering with Nextjs App router
 
 
-## Mobile
-![Mobile 1](https://res.cloudinary.com/dyiyheyzq/image/upload/v1784651475/mobileAm1_gudwut.jpg) ![Mobile 2](https://res.cloudinary.com/dyiyheyzq/image/upload/v1784651475/mobileAm2_dpccc7.jpg)
-
 ## Desktop
 ![Web 1](https://res.cloudinary.com/dyiyheyzq/image/upload/v1784651684/AmDesktop1_bsq9g6.png)
 
