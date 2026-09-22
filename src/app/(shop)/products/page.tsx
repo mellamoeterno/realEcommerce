@@ -4,10 +4,10 @@ import { getProducts } from "../../../features/products/lib/getProducts";
 export default async function Home() {
   const products = await getProducts();
 
-  const perfumeSelectedCategory = "perfume"
+  const luxurySelectedCategory = "luxury"
 
-  const perfumeFilteredProducts = products.filter(
-    (p) => p.category === perfumeSelectedCategory
+  const luxuryFilteredProducts = products.filter(
+    (p) => p.category === luxurySelectedCategory
   )
 
   return (
@@ -17,7 +17,7 @@ export default async function Home() {
           Products
         </h1>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {perfumeFilteredProducts.map(product => (
+        {luxuryFilteredProducts.map(product => (
           <ProductCard.Default key={product.id} product={product}
           />
         ))}
