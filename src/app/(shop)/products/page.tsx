@@ -1,5 +1,6 @@
 import { ProductCard } from "../../../components/products/productCard";
 import { getProducts } from "../../../features/products/lib/getProducts";
+import { ProductCarousel } from "../../../components/sections/carouselAnimated/ProductCarousel"; 
 
 export default async function Home() {
   const products = await getProducts();
@@ -8,6 +9,7 @@ export default async function Home() {
   const electronicsSelectedCategory = "eletronics"
   const northFaceSelectedCategory = "theNorthFace"
   const halloweenSelectedCategory = "halloween"
+  
 
   const luxuryFilteredProducts = products.filter(
     (p) => p.category === luxurySelectedCategory
@@ -26,6 +28,7 @@ export default async function Home() {
   )
 
   return (
+    <div>
     <main className="min-h-screen bg-zinc-50 text-zinc-950">
       <section className="border-b border-zinc-200 bg-white">
         <div className="mx-auto flex min-h-[420px] w-full max-w-7x1 items-center px-6 py-20 sm:px-8 lg:px-12">
@@ -79,7 +82,11 @@ export default async function Home() {
           </div>
         </div>
       </section>
+      </main>
 
+      <ProductCarousel/>
+      
+      <main className="min-h-screen bg-zinc-50 text-zinc-950">
       <section className="border-t border-zinc-200 py-16 sm:py-20">
         <div className="mx-auto w-full max-w-6xl px-6">
           <h2 className="text-2xl font-semibold text-black">Halloween</h2>
@@ -90,7 +97,8 @@ export default async function Home() {
           </div>
         </div>
       </section>
-    </main>
+      </main>
+    </div>
   );
 }
 //in this page, i plan on displaying at most 3 categories. And after the second category, display either a carousel or a grid of products. 
