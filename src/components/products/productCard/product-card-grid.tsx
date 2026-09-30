@@ -6,6 +6,7 @@ type ProductCardGridProps = {
   className?: string;
   emptyMessage?: string;
   renderCard?: (product: ProductDTO, index: number) => React.ReactNode;
+  carousel?: boolean;
 };
 
 export function ProductCardGrid({

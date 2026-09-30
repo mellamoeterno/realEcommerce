@@ -88,6 +88,7 @@ export function ProductCarouselClient({
           <div className="min-w-max">
             <ProductCard.Grid
               products={products}
+              carousel
             />
           </div>
         </div>
