@@ -14,6 +14,7 @@ export function ProductCardGrid({
   className = "grid gap-6 sm:grid-cols-2 lg:grid-cols-3",
   emptyMessage = "No products found.",
   renderCard,
+  carousel = false,
 }: ProductCardGridProps) {
   if (products.length === 0) {
     return (
@@ -23,10 +24,17 @@ export function ProductCardGrid({
     );
   }
 
+  const gridClassName = carousel
+    ? "flex w-max gap-6"
+    : "grid gap-6 sm:grid-cols-2 lg:grid-cols-3";
+
   return (
-    <ul className={className}>
+    <ul className={className ?? gridClassName}>
       {products.map((product, index) => (
-        <li key={product.id}>
+        <li key={product.id}
+        className={carousel ? "shrink-0" : undefined}
+        >
+          
           {renderCard ? (
             renderCard(product, index)
           ) : (
