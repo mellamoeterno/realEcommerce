@@ -11,7 +11,7 @@ type ProductCardGridProps = {
 
 export function ProductCardGrid({
   products,
-  className = "grid gap-6 sm:grid-cols-2 lg:grid-cols-3",
+  className = "",
   emptyMessage = "No products found.",
   renderCard,
   carousel = false,
@@ -29,10 +29,11 @@ export function ProductCardGrid({
     : "grid gap-6 sm:grid-cols-2 lg:grid-cols-3";
 
   return (
-    <ul className={className ?? gridClassName}>
+    <ul className={`${gridClassName} ${className}`}>
       {products.map((product, index) => (
         <li key={product.id}
-        className={carousel ? "shrink-0" : undefined}
+        className={carousel 
+          ? "w-[85vw] shrink-0 sm:w-[280px] lg:w-[320px]" : undefined}
         >
           
           {renderCard ? (
