@@ -34,7 +34,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
               className="object-contain p-4"
             />
             <button
-            className="absolute left-2 top-1/2 -translate-y-1/2 bg-[#0000] text-black squared-full w-10 h-10"
+            className="absolute left-2 top-1/2 -translate-y-1/2 bg-[#0000] text-black squared-full w-10 h-10 bg-black/30 text-white backdrop-blur-sm"
             onClick={() => 
               setSelectedImage((prev) =>
               prev === 0
@@ -46,7 +46,7 @@ export function ProductDetails({ product }: ProductDetailsProps) {
               ←
             </button>
             <button
-            className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#0000] text-black squared-full w-10 h-10"
+            className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#0000] text-black squared-full w-10 h-10 bg-black/30 text-white backdrop-blur-sm"
             onClick={() => 
               setSelectedImage((prev) =>
               prev === product.imageUrls.length - 1
