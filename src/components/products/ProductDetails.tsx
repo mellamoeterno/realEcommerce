@@ -3,17 +3,31 @@
 import Image from "next/image";
 import type { ProductDTO } from "../../features/products/dto/product.dto";
 import { AddToCartButton } from "../../features/cart/components/add-to-cart-button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
+  type ProductDetailsProps = {
+    product: ProductDTO;
+  };
 
+  const countries = {
+    canada: "Ottawa",
+    united_states: "Washington D.C.",
+    Australia: "Canberra",
+    New_Zealand: "Wellington",
+    Switzerland: "Bern",
+    United_Kingdom: "London",
+  };
 
-
-type ProductDetailsProps = {
-  product: ProductDTO;
-};
 
 export function ProductDetails({ product }: ProductDetailsProps) {
 
+  const [randomCountry, setRandomCountry] = useState<string | null | undefined>(null);
+
+  useEffect(() => {
+    const keys = Object.keys(countries);
+    setRandomCountry(keys[Math.floor(Math.random() * keys.length)]);
+  }, []);
+  
   const [selectedImage, setSelectedImage ] = useState(0)
 
   return (
@@ -81,12 +95,12 @@ export function ProductDetails({ product }: ProductDetailsProps) {
           </h1>
 
           {/* Rating (mock UI) */}
-          <div className="flex items-center gap-2 text-sm">
+          {/* <div className="flex items-center gap-2 text-sm">
             <span className="text-yellow-500">★★★★☆</span>
             <span className="text-blue-600 hover:underline cursor-pointer">
               123 ratings
             </span>
-          </div>
+          </div> */}
 
           {/* Price Section */}
           <div className="border-t border-b py-4">
@@ -104,10 +118,10 @@ export function ProductDetails({ product }: ProductDetailsProps) {
           </p> */}
 
           {/* Extra Info */}
-          <div className="text-sm text-gray-600 space-y-1">
+          {/* <div className="text-sm text-gray-600 space-y-1">
             <p>Brand: Example Brand</p>
             <p>Category: Example Category</p>
-          </div>
+          </div> */}
         </div>
 
         {/* RIGHT - Buy Box */}
@@ -129,9 +143,9 @@ export function ProductDetails({ product }: ProductDetailsProps) {
 
 
           <div className="text-xs text-gray-500">
-            <p>Secure transaction</p>
-            <p>Ships from: Your Store</p>
-            <p>Sold by: Your Store</p>
+            <p>Transaction powered by: stripe</p>
+            <p>Ships from: {randomCountry}</p>
+            <p>Sold by: Vendor</p>
           </div>
         </div>
 
