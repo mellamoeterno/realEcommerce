@@ -21,6 +21,11 @@ import { useState, useEffect } from "react";
 
 export function ProductDetails({ product }: ProductDetailsProps) {
 
+  const images = 
+  product.imageUrls && product.imageUrls.length > 0
+    ? product.imageUrls
+    : [product.imageUrl ?? "/placeholder.png"]; 
+
   const [randomCountry, setRandomCountry] = useState<string | null | undefined>(null);
 
   useEffect(() => {
@@ -30,6 +35,18 @@ export function ProductDetails({ product }: ProductDetailsProps) {
   
   const [selectedImage, setSelectedImage ] = useState(0)
 
+  const goPrev = () => {
+    setSelectedImage((prev) =>
+      prev === 0 ? images.length - 1 : prev - 1
+    );
+  }
+
+  const goNext = () => {
+    setSelectedImage((prev) =>
+      prev === images.length - 1 ? 0 : prev + 1
+    );
+  }
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -37,37 +54,25 @@ export function ProductDetails({ product }: ProductDetailsProps) {
         {/* LEFT - Image Gallery */}
         <div className="flex flex-col gap-4">
           <div className="relative w-full aspect-square bg-white border rounded-md overflow-hidden">
-            <Image
-              src={
-                product.imageUrls[selectedImage] ??
-                product.imageUrl ??
-                "/placeholder.png"
-              }
-              alt={product.name}
-              fill
-              className="object-contain p-4"
-            />
+            {images.map((imageUrl, index) => (
+              <Image
+                key={imageUrl + index}
+                src={imageUrl}
+                alt={product.name}
+                fill
+                className={`object-contain p-4 transition-opacity duration-150 ${
+                  index === selectedImage ? "opacity-100" : "opacity-0"}`}
+              />
+            ))}
             <button
             className="absolute left-2 top-1/2 -translate-y-1/2 bg-[#0000] text-black squared-full w-10 h-10 bg-black/30 text-white backdrop-blur-sm"
-            onClick={() => 
-              setSelectedImage((prev) =>
-              prev === 0
-                  ? product.imageUrls.length - 1
-                  : prev - 1
-            )
-            }
+            onClick={goPrev}
             >
               ←
             </button>
             <button
             className="absolute right-2 top-1/2 -translate-y-1/2 bg-[#0000] text-black squared-full w-10 h-10 bg-black/30 text-white backdrop-blur-sm"
-            onClick={() => 
-              setSelectedImage((prev) =>
-              prev === product.imageUrls.length - 1
-                  ? 0
-                  : prev + 1
-            )
-            }
+            onClick={goNext}
             >
               →
             </button>
@@ -77,11 +82,23 @@ export function ProductDetails({ product }: ProductDetailsProps) {
 
           {/* Thumbnails (UI only for now) */}
           <div className="flex gap-2">
-            {[1, 2, 3].map((i) => (
-              <div
-                key={i}
-                className="w-16 h-16 border rounded bg-white"
-              />
+            {images.map((imageUrl, index) => (
+              <button
+                key={imageUrl + index}
+                type="button"
+                onClick={() => setSelectedImage(index)}
+                aria-label={`View image ${index + 1}`}
+                className={`relative w-16 h-16 border rounded bg-white ${
+                  index === selectedImage ? "ring-2 ring-blue-500" : ""
+                }`}
+              >
+                <Image
+                  src={imageUrl}
+                  alt={`${product.name} Thumbnail ${index + 1}`}
+                  fill
+                  className="object-contain p-1"
+                />
+              </button>
             ))}
           </div>
         </div>
