@@ -1,4 +1,4 @@
-'use client'
+/* 'use client'
 
 import {useCallback, useEffect, useMemo, useState} from "react";
 
@@ -30,4 +30,4 @@ const BADGE: Record<Severity, string> = {
     medium: 'bg-amber-50 text-amber-700 ring-amber-600/20',
     low: 'bg-slate-50 text-slate-600 ring-slate-500/20',
 };
-//....
+//.... */
