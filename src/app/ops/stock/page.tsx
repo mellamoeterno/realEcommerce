@@ -1,5 +1,5 @@
-/* 'use client'
-
+ 'use client'
+/*
 import {useCallback, useEffect, useMemo, useState} from "react";
 
 type Severity = 'critical' | 'high' | 'medium' | 'low';
@@ -31,3 +31,6 @@ const BADGE: Record<Severity, string> = {
     low: 'bg-slate-50 text-slate-600 ring-slate-500/20',
 };
 //.... */
+export default function StockInvestigationPage() {
+  return <h1>Stock Management</h1>;
+}
