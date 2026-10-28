@@ -78,7 +78,7 @@ export default function StockInvestigationPage() {
             </button>
         </header>
 
-        <div>
+{/*         <div>
             <FilterChip active={filter === 'all'} onClick={() => setFilter('all')}>
             All ({data?.total ?? 0})
             </FilterChip>
@@ -87,7 +87,7 @@ export default function StockInvestigationPage() {
                     {s} ({data?.counts?.[s] ?? 0})
                 </FilterChip>
             ))}
-        </div>
+        </div> */}
 
         {error && (
             <div>
