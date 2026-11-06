@@ -78,7 +78,7 @@ export default function StockInvestigationPage() {
             </button>
         </header>
 
-{/*         <div>
+        <div>
             <FilterChip active={filter === 'all'} onClick={() => setFilter('all')}>
             All ({data?.total ?? 0})
             </FilterChip>
@@ -87,11 +87,11 @@ export default function StockInvestigationPage() {
                     {s} ({data?.counts?.[s] ?? 0})
                 </FilterChip>
             ))}
-        </div> */}
+        </div>
 
         {error && (
             <div>
-                could not Reacth Ops-Api: {error}
+                could not Reach Ops-Api: {error}
             </div>
         )}
 
@@ -99,9 +99,9 @@ export default function StockInvestigationPage() {
             <p>No issues for this filter</p>
         )}
 
-    {/*     <ul>
+        <ul>
             {visible.map((issue) => (
-                <li key={issue.id>
+                <li key={issue.id} className="rounded-lg border p-4">
                     <div>
                     <span className={`rounded-full ${BADGE[issue.severity]}`}
                     >
@@ -110,11 +110,33 @@ export default function StockInvestigationPage() {
                     <span>{issue.type}</span>
                     </div>
                     <p>{issue.message}</p>
-                    <p>{issue.productName} - {issue.sku}
+                    <p>{issue.productName} - 
+                        <span>{issue.sku}</span>
                     </p>
-                    </li>
+                    <pre>{JSON.stringify(issue.details, null, 2)}</pre>
+                </li>
             ))}
-        </ul> */}
+        </ul> 
     </main>
-  )
+  );
+}
+
+function FilterChip({
+    active,
+    onClick,
+    children,
+}: {
+    active: boolean;
+    onClick: () => void;
+    children: React.ReactNode;
+}) {
+    return (
+        <button
+        onClick={onClick}
+        className={`rounded-full border px-3 py-1 text-xs capitalize transition ${
+            active ? 'border-slate-900 bg-slate-900 text-white' : 'hover:bg-slate-50'}`}
+        >
+            {children}
+        </button>
+    );
 }
